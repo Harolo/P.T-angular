@@ -1,0 +1,171 @@
+<div>
+  <div class="container col-5">
+    <h1><strong>Editar Persona</strong></h1>
+    <form [formGroup]="formRegistro">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="form-outline">
+            <label class="form-label">Nombre</label>
+            <input
+              formControlName="nombre"
+              type="text"
+              [(ngModel)]="personaData.nombre"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-outline">
+            <label class="form-label">Apellidos</label>
+            <input
+              formControlName="apellido"
+              type="text"
+              [(ngModel)]="personaData.apellido"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-outline">
+            <label class="form-label">Fecha de Nacimiento</label>
+            <input
+              formControlName="fechaNacimiento"
+              type="date"
+              [(ngModel)]="personaData.fechaNacimiento"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-outline">
+            <label for="estadoCivil">Estado civil</label>
+            <select
+              [(ngModel)]="personaData.estadoCivil"
+              formControlName="estadoCivil"
+              class="form-control"
+              required
+            >
+              <option selected>Seleccione...</option>
+              <option
+                *ngFor="let opcion of opcionesEstadoCivil"
+                [value]="opcion.nombre"
+              >
+                {{ opcion.nombre }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-outline">
+            <label for="estadoCivil">Hermanos</label>
+            <select formControlName="hermanos" class="form-control" required>
+              <option selected>Seleccione...</option>
+              <option value="true">Si</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+          <label class="form-label" for="textHermanos">Hermanos</label>
+          <div class="form-outline">
+            <div *ngIf="personaData.hermanos; else inactivo">
+              <div class="form-check">
+                <input
+                  formControlName="hermanos"
+                  class="form-check-input"
+                  type="radio"
+                  name="hermanos"
+                  id="exampleRadios1"
+                  value="true"
+                  checked
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  Si
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  formControlName="hermanos"
+                  class="form-check-input"
+                  type="radio"
+                  name="hermanos"
+                  id="exampleRadios1"
+                  value="false"
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-outline">
+            <div>
+              <ng-template #inactivo>
+                <div class="form-check">
+                  <input
+                    formControlName="hermanos"
+                    class="form-check-input"
+                    type="radio"
+                    id="exampleRadios1"
+                    name="hermanos"
+                    value="true"
+                  />
+                  <label class="form-check-label" for="exampleRadios1">
+                    Si
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    formControlName="hermanos"
+                    class="form-check-input"
+                    type="radio"
+                    id="exampleRadios1"
+                    name="hermanos"
+                    value="false"
+                    checked
+                  />
+                  <label class="form-check-label" for="exampleRadios1">
+                    No
+                  </label>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-md-6">
+          <label>Foto</label>
+
+          <div class="form-group">
+            <div>
+              <img
+                width="60"
+                [src]="'data:image/png;base64,' + personaData.foto"
+                alt="Imagen"
+              />
+            </div>
+            <input
+              (change)="readImage($event)"
+              type="file"
+              class="form-control-file"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-4"
+          (click)="guardar()"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
